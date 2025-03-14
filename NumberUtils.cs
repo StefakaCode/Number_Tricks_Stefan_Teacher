@@ -47,17 +47,21 @@ public class NumberUtils
     public static int[] EratoshtenesSieve(int n)
     {
         bool[] isPrime = new bool[n]; // bool for each number from 1 to n
-        for (int i = 1; i < n; i++) // i=0 would be for the number one, but one is not prime
+        for (int i = 0; i < n; i++) // start with all true by default
             isPrime[i] = true;
+        
+        isPrime[0] = false; // one is not prime by definition
 
-
-        //from 2 to n
+        // for numbers from 2 to n
         for (int i = 1; i < n; i++)
             for (int j = i + 1; j < n; j++)
-                if (isPrime[j] && (j + 1) % (i + 1) == 0)
+                // if current number is a multiple of a previous number
+                if ((j + 1) % (i + 1) == 0) 
                     isPrime[j] = false;
 
-        int[] primes = isPrime.Select((isPrime,i) => isPrime ? i+1: 0 ).Where(n=>n!=0).ToArray();
+        // convert bools to ints and only keep those which are prime
+        int[] primes = isPrime.Select((_, i) => i + 1)
+            .Where((_, i) => isPrime[i]).ToArray();
         return primes;
     }
 }
