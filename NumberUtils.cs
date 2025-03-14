@@ -6,7 +6,7 @@ public class NumberUtils
 	{
 
 	}
-	public double Babylon(float n)
+	public static double Babylon(float n)
 	{
         float x = n;
         float y = 1;
