@@ -44,6 +44,47 @@ public class NumberUtils
 
     }
 
+    public static bool MagicSquare(int[,] square)
+    {
+        int firstRowSum = 0;
+        int sum = 0;
+        bool isMagic = true;
+        for (int i = 0; i < square.GetLength(1); i++)
+        {
+            firstRowSum += square[1, i];
+        }
+        
+
+
+            for (int i = 0; i < square.GetLength(0); i++)
+            {
+                sum = 0;
+                for (int j = 0; j < square.GetLength(1); j++)
+                {
+                    sum += square[i, j];
+                }
+                if (!(sum == firstRowSum))
+                {
+                    isMagic = false;
+                }
+            }
+            for (int i = 0; i < square.GetLength(0); i++)
+            {
+                sum = 0;
+                for (int j = 0; j < square.GetLength(1); j++)
+                {
+                    sum += square[j, i];
+                }
+                if (!(sum == firstRowSum))
+                {
+                isMagic = false;
+                }
+                
+
+            }
+        
+        return isMagic;
+
     public static int[] EratoshtenesSieve(int n)
     {
         bool[] isPrime = new bool[n]; // bool for each number from 1 to n
@@ -63,5 +104,6 @@ public class NumberUtils
         int[] primes = isPrime.Select((_, i) => i + 1)
             .Where((_, i) => isPrime[i]).ToArray();
         return primes;
+
     }
 }
