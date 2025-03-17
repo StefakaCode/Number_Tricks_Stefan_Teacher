@@ -84,6 +84,7 @@ public class NumberUtils
             }
         
         return isMagic;
+    }
 
     public static int[] EratoshtenesSieve(int n)
     {
@@ -104,6 +105,18 @@ public class NumberUtils
         int[] primes = isPrime.Select((_, i) => i + 1)
             .Where((_, i) => isPrime[i]).ToArray();
         return primes;
-
+    }
+    public static void DrawCircle(double r)
+    {
+        int bound = (int)Math.Ceiling(r);
+        for (int y = bound-1; y >= -bound; y--)
+        {
+            for (int x = -bound; x < bound; x++)
+            {
+                bool isInCircle = x * x + y * y < r * r;
+                Console.Write(isInCircle ? "##": "  ");
+            }
+            Console.WriteLine();
+        }
     }
 }
