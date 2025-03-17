@@ -6,18 +6,23 @@ public class NumberUtils
     {
 
     }
-    public static void PrintPascalTriangle(int n)
-    {
+    public static int[][] GeneratePascalTriangle(int n)
+    { 
+        int[][] triangle = new int[n][];
+
         for (int i = 0; i < n; i++)
         {
-            int num = 1;
-            for (int j = 0; j <= i; j++)
+            triangle[i] = new int[i + 1]; 
+            triangle[i][0] = 1;
+            triangle[i][i] = 1; 
+
+            for (int j = 1; j < i; j++)
             {
-                Console.Write(num + " ");
-                num = num * (i - j) / (j + 1);
+                triangle[i][j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
             }
-            Console.WriteLine();
         }
+
+        return triangle;
     }
     public static double FastExponentiate(double a, int power)
     {

@@ -3,4 +3,9 @@
 Console.WriteLine("Hello, World!");
 Console.Write("n: ");
 int n = int.Parse(Console.ReadLine());
-NumberUtils.PrintPascalTriangle(n); 
+
+int[][] pascalTriangle = NumberUtils.GeneratePascalTriangle(n);
+foreach (var row in pascalTriangle)
+{
+    Console.WriteLine(string.Join(" ", row));
+}
