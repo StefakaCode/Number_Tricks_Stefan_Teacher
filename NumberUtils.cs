@@ -42,4 +42,52 @@ public class NumberUtils
         return power % 2 == 0 ? subTotal : subTotal * a;
 
     }
+    public static bool MagicSquare(int[,] square)
+    {
+        int firstRowSum = 0;
+        int sum = 0;
+        bool isMagic = true;
+        for (int i = 0; i < square.GetLength(1); i++)
+        {
+            firstRowSum += square[1, i];
+        }
+        
+
+
+            for (int i = 0; i < square.GetLength(0); i++)
+            {
+                sum = 0;
+                for (int j = 0; j < square.GetLength(1); j++)
+                {
+                    sum += square[i, j];
+                }
+                if (sum == firstRowSum)
+                {
+                    isMagic = true;
+                }
+                else
+                {
+                   isMagic = false;
+                }
+            }
+            for (int i = 0; i < square.GetLength(0); i++)
+            {
+                sum = 0;
+                for (int j = 0; j < square.GetLength(1); j++)
+                {
+                    sum += square[j, i];
+                }
+                if (sum == firstRowSum)
+                {
+                    isMagic = true;
+                }
+                else
+                {
+                    isMagic = false;
+                }
+
+            }
+        
+        return isMagic;
+    }
 }
