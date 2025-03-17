@@ -42,4 +42,18 @@ public class NumberUtils
         return power % 2 == 0 ? subTotal : subTotal * a;
 
     }
+
+    public static void DrawCircle(double r)
+    {
+        int bound = (int)Math.Ceiling(r);
+        for (int y = bound-1; y >= -bound; y--)
+        {
+            for (int x = -bound; x < bound; x++)
+            {
+                bool isInCircle = x * x + y * y < r * r;
+                Console.Write(isInCircle ? "##": "  ");
+            }
+            Console.WriteLine();
+        }
+    }
 }

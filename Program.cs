@@ -3,3 +3,5 @@
 Console.WriteLine("Hello, World!");
 Console.Write(NumberUtils.Babylon(2));
 
+Console.WriteLine();
+NumberUtils.DrawCircle(5);
