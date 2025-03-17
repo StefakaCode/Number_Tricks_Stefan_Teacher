@@ -1,9 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
 
-using System.ComponentModel.Design;
-
-//Console.WriteLine("Hello, World!");
-//Console.Write(NumberUtils.Babylon(2));
 int[,] magicSquare = new int[,]
         {
             {17, 24,  1,  8, 15},
@@ -20,4 +15,4 @@ else
 {
     Console.WriteLine("false");
 }
-
+Console.WriteLine("Hello, World!");
