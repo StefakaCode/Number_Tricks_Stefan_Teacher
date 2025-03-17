@@ -16,3 +16,5 @@ else
     Console.WriteLine("false");
 }
 Console.WriteLine("Hello, World!");
+Console.WriteLine();
+NumberUtils.DrawCircle(5);
