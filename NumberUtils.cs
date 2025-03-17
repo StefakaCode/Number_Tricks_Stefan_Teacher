@@ -1,9 +1,10 @@
 ﻿using System;
+using System.IO.IsolatedStorage;
 
 public class NumberUtils
 {
-	public static double Babylon(float n)
-	{
+    public static double Babylon(float n)
+    {
         float x = n;
         float y = 1;
         double e = 0.000001;
@@ -14,7 +15,7 @@ public class NumberUtils
         }
         return x;
     }
-  
+
     public static List<int> FindDivisors(int n)
     {
         List<int> divisors = new List<int>();
@@ -33,7 +34,7 @@ public class NumberUtils
         divisors.Sort();
         return divisors;
     }
-        
+
     public static double FastExponentiate(double a, int power)
     {
         if (power == 0) return 1;
@@ -43,6 +44,68 @@ public class NumberUtils
 
     }
 
+    public static bool MagicSquare(int[,] square)
+    {
+        int firstRowSum = 0;
+        int sum = 0;
+        bool isMagic = true;
+        for (int i = 0; i < square.GetLength(1); i++)
+        {
+            firstRowSum += square[1, i];
+        }
+        
+
+
+            for (int i = 0; i < square.GetLength(0); i++)
+            {
+                sum = 0;
+                for (int j = 0; j < square.GetLength(1); j++)
+                {
+                    sum += square[i, j];
+                }
+                if (!(sum == firstRowSum))
+                {
+                    isMagic = false;
+                }
+            }
+            for (int i = 0; i < square.GetLength(0); i++)
+            {
+                sum = 0;
+                for (int j = 0; j < square.GetLength(1); j++)
+                {
+                    sum += square[j, i];
+                }
+                if (!(sum == firstRowSum))
+                {
+                isMagic = false;
+                }
+                
+
+            }
+        
+        return isMagic;
+    }
+
+    public static int[] EratoshtenesSieve(int n)
+    {
+        bool[] isPrime = new bool[n]; // bool for each number from 1 to n
+        for (int i = 0; i < n; i++) // start with all true by default
+            isPrime[i] = true;
+        
+        isPrime[0] = false; // one is not prime by definition
+
+        // for numbers from 2 to n
+        for (int i = 1; i < n; i++)
+            for (int j = i + 1; j < n; j++)
+                // if current number is a multiple of a previous number
+                if ((j + 1) % (i + 1) == 0) 
+                    isPrime[j] = false;
+
+        // convert bools to ints and only keep those which are prime
+        int[] primes = isPrime.Select((_, i) => i + 1)
+            .Where((_, i) => isPrime[i]).ToArray();
+        return primes;
+    }
     public static void DrawCircle(double r)
     {
         int bound = (int)Math.Ceiling(r);
