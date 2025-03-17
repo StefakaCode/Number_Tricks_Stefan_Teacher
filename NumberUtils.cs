@@ -61,13 +61,9 @@ public class NumberUtils
                 {
                     sum += square[i, j];
                 }
-                if (sum == firstRowSum)
+                if (!(sum == firstRowSum))
                 {
-                    isMagic = true;
-                }
-                else
-                {
-                   isMagic = false;
+                    isMagic = false;
                 }
             }
             for (int i = 0; i < square.GetLength(0); i++)
@@ -77,14 +73,11 @@ public class NumberUtils
                 {
                     sum += square[j, i];
                 }
-                if (sum == firstRowSum)
+                if (!(sum == firstRowSum))
                 {
-                    isMagic = true;
+                isMagic = false;
                 }
-                else
-                {
-                    isMagic = false;
-                }
+                
 
             }
         
