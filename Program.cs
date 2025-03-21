@@ -16,3 +16,5 @@ else
     Console.WriteLine("false");
 }
 Console.WriteLine("Hello, World!");
+
+NumberUtils.DrawSine(0, 360);
