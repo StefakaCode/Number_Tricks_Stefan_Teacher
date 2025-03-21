@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO.IsolatedStorage;
+using System.Runtime.InteropServices;
 
 public class NumberUtils
 {
@@ -53,51 +54,52 @@ public class NumberUtils
         {
             firstRowSum += square[1, i];
         }
-        
 
 
-            for (int i = 0; i < square.GetLength(0); i++)
+
+        for (int i = 0; i < square.GetLength(0); i++)
+        {
+            sum = 0;
+            for (int j = 0; j < square.GetLength(1); j++)
             {
-                sum = 0;
-                for (int j = 0; j < square.GetLength(1); j++)
-                {
-                    sum += square[i, j];
-                }
-                if (!(sum == firstRowSum))
-                {
-                    isMagic = false;
-                }
+                sum += square[i, j];
             }
-            for (int i = 0; i < square.GetLength(0); i++)
+            if (!(sum == firstRowSum))
             {
-                sum = 0;
-                for (int j = 0; j < square.GetLength(1); j++)
-                {
-                    sum += square[j, i];
-                }
-                if (!(sum == firstRowSum))
-                {
                 isMagic = false;
-                }
-                
-
             }
-        
+        }
+        for (int i = 0; i < square.GetLength(0); i++)
+        {
+            sum = 0;
+            for (int j = 0; j < square.GetLength(1); j++)
+            {
+                sum += square[j, i];
+            }
+            if (!(sum == firstRowSum))
+            {
+                isMagic = false;
+            }
+
+
+        }
+
         return isMagic;
+    }
 
     public static int[] EratoshtenesSieve(int n)
     {
         bool[] isPrime = new bool[n]; // bool for each number from 1 to n
         for (int i = 0; i < n; i++) // start with all true by default
             isPrime[i] = true;
-        
+
         isPrime[0] = false; // one is not prime by definition
 
         // for numbers from 2 to n
         for (int i = 1; i < n; i++)
             for (int j = i + 1; j < n; j++)
                 // if current number is a multiple of a previous number
-                if ((j + 1) % (i + 1) == 0) 
+                if ((j + 1) % (i + 1) == 0)
                     isPrime[j] = false;
 
         // convert bools to ints and only keep those which are prime
@@ -106,4 +108,27 @@ public class NumberUtils
         return primes;
 
     }
+
+    public static void DrawSine(double phi, double d)
+    {
+        double scaleY = 5;
+        int boundY = 10;
+        double scaleX = 50 / 360.0;
+        int boundX = (int)(d * scaleX);
+        for (int y = boundY; y >= -boundY; y--)
+        {
+            for (int x = 0; x <= boundX; x++)
+            {
+                double currentY = scaleY * Math.Sin(Deg2Rad(phi + x / scaleX));
+
+                bool isUnderSine = y < currentY;
+                Console.Write(isUnderSine ? "**" : "  ");
+            }
+            Console.WriteLine();
+        }
+    }
+
+    public static double Deg2Rad(double deg) => deg / 180.0 * Math.PI;
+    public static double Rad2Deg(double rad) => rad * 180.0 / Math.PI;
+
 }
